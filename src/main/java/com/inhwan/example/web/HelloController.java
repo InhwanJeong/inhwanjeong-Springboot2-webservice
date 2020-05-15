@@ -1,6 +1,7 @@
 package com.inhwan.example.web;
 
 import com.inhwan.example.web.dto.HelloResponseDto;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
