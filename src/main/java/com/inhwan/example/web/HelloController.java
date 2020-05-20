@@ -19,7 +19,8 @@ public class HelloController {
         return new HelloResponseDto(name, amount);
     }
 
-    @GetMapping("/")
+    //@GetMapping("/") -> 머스테치랑 중복
+    @GetMapping("//")
     public String index(){
         return "Hello World!";
     }

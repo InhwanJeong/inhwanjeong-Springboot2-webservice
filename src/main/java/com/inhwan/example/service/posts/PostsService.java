@@ -2,12 +2,16 @@ package com.inhwan.example.service.posts;
 
 import com.inhwan.example.domain.posts.Posts;
 import com.inhwan.example.domain.posts.PostsRepository;
+import com.inhwan.example.web.dto.PostsListResponseDto;
 import com.inhwan.example.web.dto.PostsResponseDto;
 import com.inhwan.example.web.dto.PostsSaveRequestDto;
 import com.inhwan.example.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collector;
 
 @RequiredArgsConstructor
 @Service
@@ -33,5 +37,12 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc(){
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collector.toLists());
     }
 }
